@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+
+alembic/versions/*
+!alembic/versions/.gitkeep
+
+postgres_data/
+redis_data/
