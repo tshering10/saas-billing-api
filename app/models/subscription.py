@@ -8,6 +8,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
 
 if TYPE_CHECKING:
+    from app.models.invoice import Invoice
     from app.models.organization import Organization
     from app.models.plan import Plan
     
@@ -78,4 +79,8 @@ class Subscription(UUIDPrimaryKeyMixin, TimestampMixin, Base):
 
     plan: Mapped["Plan"] = relationship(
         back_populates="subscriptions",
+    )
+    
+    invoices: Mapped[list["Invoice"]] = relationship(
+        back_populates="subscription",
     )

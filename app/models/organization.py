@@ -10,6 +10,9 @@ from app.models.base import(
 )
 
 if TYPE_CHECKING:
+    from app.models.transaction import PaymentTransaction
+    from app.models.payment_method import PaymentMethod
+    from app.models.invoice import Invoice
     from app.models.subscription import Subscription
     from app.models.user import User
 
@@ -41,3 +44,17 @@ class Organization(
     back_populates="organization",
     cascade="all, delete-orphan",
 )
+    invoices: Mapped[list["Invoice"]] = relationship(
+        back_populates="organization",
+        cascade="all, delete-orphan",
+    )
+    
+    payment_methods: Mapped[list["PaymentMethod"]] = relationship(
+        back_populates="organization",
+        cascade="all, delete-orphan",
+    )
+    
+    payment_transactions: Mapped[list["PaymentTransaction"]] = relationship(
+        back_populates="organization",
+        cascade="all, delete-orphan",
+    )
