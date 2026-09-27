@@ -10,6 +10,7 @@ from app.models.base import(
 )
 
 if TYPE_CHECKING:
+    from app.models.subscription import Subscription
     from app.models.user import User
 
 class Organization(
@@ -35,3 +36,8 @@ class Organization(
         back_populates="organization",
         cascade="all, delete-orphan",
     )
+    
+    subscriptions: Mapped[list["Subscription"]] = relationship(
+    back_populates="organization",
+    cascade="all, delete-orphan",
+)
