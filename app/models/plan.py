@@ -28,6 +28,11 @@ class Plan(UUIDPrimaryKeyMixin, TimestampMixin, Base):
         nullable=False
     )
     
+    description: Mapped[str | None] = mapped_column(
+        String(500),
+        nullable=True,
+    )
+    
     price: Mapped[int] = mapped_column(
         Integer,
         nullable=False
